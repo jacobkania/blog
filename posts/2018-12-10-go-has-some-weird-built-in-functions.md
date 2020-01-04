@@ -1,3 +1,7 @@
+---
+Title: Go has some weird built-in functions
+PublishedDate: 2018-12-10
+---
 Go is generally an exceptionally simple language, and that's reflected through it's very small number of keywords -- one of the lowest of any modern language ([source](https://github.com/leighmcculloch/keywords)). There are also some built-in functions that I'm sure you use every day -- `append()`, `make()`, and `copy()` are the main ones. You might even use `new()` to create a pointer. But did you know that there are actually over a dozen of these built-in functions, and some of them aren't even guaranteed to be permanent?
 
 # What are all of these built-in functions?

@@ -1,3 +1,7 @@
+---
+Title: Structuring your Go web project
+PublishedDate: 2018-11-26
+---
 I was working on the Blog Engine [(Bla)](https://github.com/jacobkania/bla) as one of my first big projects written in Go. I did a bit of planning, then started organizing code into a way that I felt made sense. It quickly fell into chaos, since I was using certain OO design patterns that don't make any sense in a language like Go. This happened in different ways on two rewrites of the project -- until I finally had to make a switch in implementation, and it blew half the project apart.
 
 I decided to rewrite the entire project from the ground-up, and to take plenty of time to make sure everything is designed in a flexible and meaningful way. I looked to open-source projects for inspiration, watched lots of talks online, researched through documentation, and found an exceptional [article](https://medium.com/statuscode/how-i-write-go-http-services-after-seven-years-37c208122831) by Go veteran Mat Ryer detailing his experience. Here is the culmination of lessons learned from these sources and my own experience:
