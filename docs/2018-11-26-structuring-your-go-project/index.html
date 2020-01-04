@@ -1,0 +1,227 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Jacob Kania</title>
+    <style>
+        a {
+            color: #ee4266;
+            font-weight: 500;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #c6c5b9;
+            color: #413c58;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #f5f5f5;
+        }
+
+        .header > .name {
+            margin-left: 1rem;
+            font-size: 4rem;
+            padding: 1rem 0;
+        }
+
+        .header > .name > a {
+            text-decoration: none;
+            color: #3c91e6;
+        }
+
+        .header > .name > a:visited {
+            color: #3c91e6;
+        }
+
+        .links {
+            background-color: #3c91e6;
+            text-align: right;
+            padding: 0.75rem;
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
+
+        .links > .link {
+            margin-right: 1rem;
+            margin-left: 1rem;
+        }
+
+        .links > .link > a {
+            font-weight: 600;
+            text-decoration: none;
+            color: #f5f5f5;
+        }
+
+        .links > .link > a:visited {
+            color: #f5f5f5;
+        }
+
+        .content {
+            padding: 1rem;
+        }
+
+        .top-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 0.25rem solid #dbc2cf;
+            padding-bottom: 1rem;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 600;
+	        color: #ee4266;
+        }
+
+        .date {
+            font-size: 1rem;
+            font-family: monospace;
+        }
+        
+        @media (max-width: 600px) {
+            .top-container {
+                flex-wrap: wrap;
+            }
+
+            .title {
+                flex: 0 0 100%;
+            }
+
+            .date {
+                margin-top: 1rem;
+                flex: 0 0 100%;
+            }
+        }
+
+        .conclusion {
+            margin-top: 1rem;
+            text-align: center;
+            padding-top: 0.5rem;
+            border-top: 0.25rem solid #dbc2cf;
+        }
+    </style>
+
+</head>
+<body class="page">
+    <div class="container">
+        <div class="header">
+            <div class="name">
+                <a href="//">Jacob Kania</a>
+            </div>
+            <div class="links">
+                <span class="link"><a href="https://github.com/jacobkania">Github</a></span>
+                <span class="link"><a href="https://linkedin.com/in/jacobkania">LinkedIn</a></span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="top-container">
+                <div class="title"><no value></div>
+                <div class="date"><no value></div>
+            </div>
+            <div class="body"><p>I was working on the Blog Engine <a href="https://github.com/jacobkania/bla">(Bla)</a> as one of my first big projects written in Go. I did a bit of planning, then started organizing code into a way that I felt made sense. It quickly fell into chaos, since I was using certain OO design patterns that don&rsquo;t make any sense in a language like Go. This happened in different ways on two rewrites of the project &ndash; until I finally had to make a switch in implementation, and it blew half the project apart.</p>
+
+<p>I decided to rewrite the entire project from the ground-up, and to take plenty of time to make sure everything is designed in a flexible and meaningful way. I looked to open-source projects for inspiration, watched lots of talks online, researched through documentation, and found an exceptional <a href="https://medium.com/statuscode/how-i-write-go-http-services-after-seven-years-37c208122831">article</a> by Go veteran Mat Ryer detailing his experience. Here is the culmination of lessons learned from these sources and my own experience:</p>
+
+<h1>Free your main() function</h1>
+
+<p>I generally would recommend putting very little in your main function. If the application is going to get bigger, it will get totally unmanageable with any logic in <code>main()</code>. Instead, find a sequence of things that need to happen, and put all of the logic for those things in packages that they&rsquo;re related to. Use the <code>main()</code> function for gathering dependencies that will then be shared throughout the application.</p>
+
+<p>In my example, I know at the highest level that my application needs to:</p>
+
+<ul>
+<li>Load a configuration file</li>
+<li>Create a database and tables if they don&rsquo;t exist, and prompt to create an admin user if one doesn&rsquo;t exist</li>
+<li>Initialize the HTTP/HTTPS servers</li>
+<li>Start the server</li>
+</ul>
+
+<p>So my <code>main()</code> function does those 4 things, and nothing else.</p>
+
+<h1>Pass dependencies around your application by reference</h1>
+
+<p>Dependencies should be created at the highest level that they&rsquo;ll be needed, then passed down through your application. In Bla, for example, the database, router, and configuration settings are used in creating the server, which will then pass the dependencies to where they&rsquo;re needed. So I create them all in the <code>main()</code> function, and pass them to the server when I create it there. It looks a bit like this:</p>
+
+<pre><code class="language-go">func main() {
+	config := configuration.Load()
+
+	router := httprouter.New()
+
+	db, err := sql.Open(&quot;sqlite3&quot;, &quot;./content/data/bla.db&quot;)
+	if err != nil {
+		log.Fatalf(&quot;Database failed to open&quot;)
+	}
+
+	err = Initialize(db)
+	if err != nil {
+		log.Fatalf(&quot;Failed to run initialization&quot;)
+	}
+
+	srv := server.Server{
+		Config: config,
+		Router: router,
+		Db:     db,
+	}
+
+	log.Fatal(srv.Run())
+}
+</code></pre>
+
+<p>This way, if I ever need to change the database implementation to be Postgres, for example, I can just swap it in this one place. Since I pass this instance of the database throughout the application by reference to a <code>sql.DB</code> interface, any implementation of <code>sql.DB</code> can be used in place of this <code>sqlite3</code> implementation. The whole application will work the same if I just change that one line to use a postgres driver. This is the Server struct which makes this possible:</p>
+
+<pre><code class="language-go">type Server struct {
+	Config      *configuration.Configuration
+	Router      *httprouter.Router
+	Db          *sql.DB
+	httpsServer *http.Server
+	httpServer  *http.Server
+}
+</code></pre>
+
+<h1>Keep all of your request handlers close to your server implementation</h1>
+
+<p>In Bla, the method in the last example, <code>srv.Run()</code>, does a few different things. First, it sets up all of the routes for the router that&rsquo;s given as a dependency. Here&rsquo;s the <code>Run()</code> method:</p>
+
+<pre><code class="language-go">func (s *Server) Run() error {
+	s.setRoutes()
+
+	httpUrl := &quot;:&quot; + strconv.Itoa(s.Config.HttpPort)
+	httpsUrl := &quot;:&quot; + strconv.Itoa(s.Config.HttpsPort)
+	s.newServer(httpsUrl, httpUrl)
+
+	go s.httpServer.ListenAndServe()
+	return s.httpsServer.ListenAndServeTLS(s.Config.CertFile, s.Config.KeyFile)
+}
+</code></pre>
+
+<p>That&rsquo;s simple enough. Within <code>Run()</code> we have <code>setRoutes()</code>, which looks a little like this:</p>
+
+<pre><code class="language-go">func (s *Server) setRoutes() {
+	...
+	s.Router.GET(&quot;/post/id/:id&quot;, handleGetPostById(s.Db))
+	s.Router.POST(&quot;/post&quot;, handleCreatePost(s.Db))
+	s.Router.PUT(&quot;/post/id/:id&quot;, handleUpdatePost(s.Db))
+	s.Router.DELETE(&quot;/post/id/:id&quot;, handleDeletePost(s.Db))
+	...
+}
+</code></pre>
+
+<p>So what it&rsquo;s doing here is using the shared dependency called <code>Db</code> that was given to the Server instance when we created it. We then pass that dependency into the handler functions. Keeping the handlers close to the server allows us to easily pass these dependencies to accomplish the goal of passing dependencies around by reference.</p>
+
+<h1>Conclusion</h1>
+
+<p>The main idea that I&rsquo;ve come to realize is that, to quote Rob Pike, <em>simplicity is complicated</em>. If you want to make an application in any language that is simple to work on, and simple to change, it takes a lot of planning and thought. It probably takes some re-writing. The best way to learn what makes a simple application is by doing, and sometimes you may need to change a lot of things along the way. It&rsquo;s hard work, but the end result is a code-base that is enjoyable to work with, and I think that is the greatest reward for your hard work.</p>
+</div>
+            <div class="conclusion" id="conclusion">
+                © 2019 Jacob Kania
+            </div>
+        </div>
+    </div>
+
