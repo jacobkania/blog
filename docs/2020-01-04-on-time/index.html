@@ -4,7 +4,8 @@
     <title>Jacob Kania</title>
     <style>
         a {
-            color: #3c91e6;
+            color: #ee4266;
+            font-weight: 500;
         }
 
         .page {
@@ -66,31 +67,38 @@
             padding: 1rem;
         }
 
-        .introduction {
-            margin-bottom: 1rem;
+        .top-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: 0.25rem solid #dbc2cf;
+            padding-bottom: 1rem;
         }
 
-        .most-recent-posts-list {
-            display: table;
-            list-style-type: none;
-            padding: 0;
+        .title {
+            font-size: 3rem;
+            font-weight: 600;
+	        color: #ee4266;
         }
 
-        .item-date {
+        .date {
+            font-size: 1rem;
             font-family: monospace;
-            width: 6rem;
         }
+        
+        @media (max-width: 600px) {
+            .top-container {
+                flex-wrap: wrap;
+            }
 
-        .post-list-item-row {
-            display: table-row;
-            text-decoration: none;
-            color: #413c58;
-        }
+            .title {
+                flex: 0 0 100%;
+            }
 
-        .post-list-item-row > div {
-            display: table-cell;
-            vertical-align: middle;
-            padding: 0.15rem 0;
+            .date {
+                margin-top: 1rem;
+                flex: 0 0 100%;
+            }
         }
 
         .conclusion {
@@ -114,31 +122,17 @@
             </div>
         </div>
         <div class="content">
-            <div class="introduction">
-                Hey! I'm Jacob. I write about things that I think are interesting,
-                which tends to vary quite a bit. This is currently a work in progress, but feel free to
-                browse through my past posts while you're here!
-             </div >
-            <div class="most-recent-posts-list">
-                
-                <a href="/2020-01-04-on-time" class="post-list-item-row">
-                        <div class="item-date">2020-01-04</div>
-                        <div class="item-title">A comment on time</div>
-                </a>
-                
-                <a href="/2018-12-10-go-has-some-weird-built-in-functions" class="post-list-item-row">
-                        <div class="item-date"><no value></div>
-                        <div class="item-title"><no value></div>
-                </a>
-                
-                <a href="/2018-11-26-structuring-your-go-project" class="post-list-item-row">
-                        <div class="item-date"><no value></div>
-                        <div class="item-title"><no value></div>
-                </a>
-                
+            <div class="top-container">
+                <div class="title">A comment on time</div>
+                <div class="date">2020-01-04</div>
             </div>
+            <div class="body"><p>Why have I spent so long working on many iterations of the same project? Why did I just jump in without planning first? Why am I prioritizing how to use my time, but getting it so wrong?</p>
+
+<p>I was doing some thinking today, and those are the quick summary of my thoughts. I have projects that I really want to work on &ndash; that I&rsquo;m excited about &ndash; but it seems like a challenge to get around to them. So I wonder, why is this?</p>
+</div>
             <div class="conclusion" id="conclusion">
                 © 2019 Jacob Kania
             </div>
         </div>
     </div>
+
