@@ -14,7 +14,7 @@ I was trying to solve my blogging problem for over a year. I wanted to be able t
 
 Finally, after a year or so, the idea came to me that I needed to create something different. I like the idea of minimal static sites that don't require JavaScript to work, and with some planning this time, I had a thoroughly imagined static site generator. With that strong vision for the product, it was simple to just write the code. It's not clean, and certainly wouldn't pass a code review, but it's a simple program that achieves my goals.
 
-This was the first time I felt satisfied with what I had created. It solved my problem. It was simple. It was easy to iterate on. I fully understood all of it. It felt just like the time that I first replaced a motherboard when I worked in IT -- I knew all of the pieces, how they worked together, and was proud of the result.
+This was the first time I felt satisfied with what I had created. It solved my problem. It was simple. It was easy to iterate on. I fully understood all of it. It felt just like the time that I first replaced a motherboard in a broken computer -- I understood all of the pieces, how they worked together, and was proud of the result.
 
 Eventually, one of your "fun" projects will be crappy, **but worthwhile to improve on.** Maybe it'll become less crappy with time, and maybe other people will even want to use it. That only can happen from all of the lessons that you've learned from the abandoned crappy projects. It's a skill to be able to build something that fills a need, and it's worthwhile for everyone to learn.
 
