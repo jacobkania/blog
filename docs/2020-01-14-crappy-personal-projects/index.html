@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Jacob Kania | Go has some weird built-in functions</title>
+    <title>Jacob Kania | Crappy Personal Projects</title>
     <style>
         a {
             color: #ee4266;
@@ -124,84 +124,28 @@
         </div>
         <div class="content">
             <div class="top-container">
-                <div class="title">Go has some weird built-in functions</div>
-                <div class="date">2018-12-10</div>
+                <div class="title">Crappy Personal Projects</div>
+                <div class="date">2020-01-14</div>
             </div>
-            <div class="body"><p>Go is generally an exceptionally simple language, and that&rsquo;s reflected through it&rsquo;s very small number of keywords &ndash; one of the lowest of any modern language (<a href="https://github.com/leighmcculloch/keywords">source</a>). There are also some built-in functions that I&rsquo;m sure you use every day &ndash; <code>append()</code>, <code>make()</code>, and <code>copy()</code> are the main ones. You might even use <code>new()</code> to create a pointer. But did you know that there are actually over a dozen of these built-in functions, and some of them aren&rsquo;t even guaranteed to be permanent?</p>
+            <div class="body"><p>I feel it&rsquo;s important to work on something for yourself. Something that you have lots of creative freedom in.</p>
 
-<h1>What are all of these built-in functions?</h1>
+<p>Most software engineers (and other tech-people) are probably working at a full time job of some sort. You have somebody telling you what to work on, somebody else telling you the design (either API or UI guidelines), while still another person gets to review your code and the way you implemented a solution to a problem.</p>
 
-<p>For reference, the Go documentation has the full list <a href="https://tip.golang.org/pkg/builtin/">here</a>, but I&rsquo;ll at least mention them all in this article.</p>
+<p>This all makes perfect sense for a company. They have the resources to hire a lot of good people to specialize and be more efficient at solving the business problems. Having somebody to regularly go back-and-forth with your users and decide what they need most is extremely valuable. But it&rsquo;s also valuable to the Software Engineer to take big risks &ndash; create something crappy sometimes. It&rsquo;s better not to do that at work, so create your own crappy projects at home every once in a while.</p>
 
-<ul>
-<li><code>len(x)</code>: You&rsquo;re probably familiar with this one &ndash; it gives you the length of <code>x</code>, and handles different types in different ways. In an array or slice, you get the number of elements contained within it. For a string, you get the number of bytes.</li>
-<li><code>cap(x)</code>: This is a less-common one. It gives you the capacity of <code>x</code>, which is the same as <code>len(x)</code> for an array, but for a slice it gives you the maximum length that the slice can reach before needing to resize. Capacity grows more quickly than length in a slice, but they&rsquo;re equivalent when the slice is first created.</li>
-<li><code>delete(m, key)</code>: This isn&rsquo;t the same as other languages &ndash; since Go is garbage collected, delete isn&rsquo;t used for dereferencing memory. It removes items from a map (<code>m</code>) by their key.</li>
-<li><code>close(c)</code>: Closes a channel between goroutines.</li>
-</ul>
+<p>Your home projects will always be crappy at first.</p>
 
-<p>There are a few weird ones to do with complex numbers that most of us probably won&rsquo;t use very often:</p>
+<p>I was trying to solve my blogging problem for over a year. I wanted to be able to write blog posts in markdown with minimal overhead, on a site that I controlled. I made several different crappy programs that all worked OK, but I gave up on them all eventually. I gave up on them because they didn&rsquo;t solve my problem, even though they were fun and interesting while I was working on them. I was looking to existing solutions for inspiration, but never really knew what I wanted to build.</p>
 
-<ul>
-<li><code>complex(r, i)</code>: Creates a complex number type from real <code>r</code> and imaginary <code>i</code> floats. These complex numbers can then have their real and imaginary parts deconstructed with the built-in functions <code>real(c)</code> and <code>imag(c)</code> respectively.</li>
-</ul>
+<p>Finally, after a year or so, the idea came to me that I needed to create something different. I like the idea of minimal static sites that don&rsquo;t require JavaScript to work, and with some planning this time, I had a thoroughly imagined static site generator. With that strong vision for the product, it was simple to just write the code. It&rsquo;s not clean, and certainly wouldn&rsquo;t pass a code review, but it&rsquo;s a simple program that achieves my goals.</p>
 
-<p>They may be weird, but these are fully supported by the language without any gotchas. They&rsquo;re useful in certain situations involving complex math (pun intended). Developers doing some specific tasks will find them useful.</p>
+<p>This was the first time I felt satisfied with what I had created. It solved my problem. It was simple. It was easy to iterate on. I fully understood all of it. It felt just like the time that I first replaced a motherboard when I worked in IT &ndash; I knew all of the pieces, how they worked together, and was proud of the result.</p>
 
-<h1>The (possibly) temporary built-ins</h1>
+<p>Eventually, one of your &ldquo;fun&rdquo; projects will be crappy, <strong>but worthwhile to improve on.</strong> Maybe it&rsquo;ll become less crappy with time, and maybe other people will even want to use it. That only can happen from all of the lessons that you&rsquo;ve learned from the abandoned crappy projects. It&rsquo;s a skill to be able to build something that fills a need, and it&rsquo;s worthwhile for everyone to learn.</p>
 
-<p>There are two of these: <code>print()</code> and <code>println()</code>. No, these aren&rsquo;t the same as the functions within the <code>fmt</code> package, <code>fmt.Print()</code> and <code>fmt.Println()</code>, these are just base-level built-in functions. You can call them without any imports:</p>
+<p>Extra:</p>
 
-<pre><code class="language-go">func main() {
-	print(&quot;Hello, world!&quot;)
-}
-</code></pre>
-
-<p>This is a perfectly valid go program. <a href="https://play.golang.org/p/iaMuo93hY33">(try it here)</a>!</p>
-
-<p>But the spec says that these functions aren&rsquo;t guaranteed to remain in Go. They&rsquo;re intended for debugging, not production use. Think of it like a <em>more elegant way of calling <code>alert('got here');</code> in JavaScript.</em> I think that this feature is really nice to have for situations where you don&rsquo;t have a full IDE running, and you just want to see what a value is somewhere in your code while debugging. But isn&rsquo;t it strange that the official language spec just shrugs its shoulders and says:</p>
-
-<blockquote>
-<p>maybe this will continue existing for a while <code>¯\_(ツ)_/¯</code></p>
-</blockquote>
-
-<h1>Panic and recover</h1>
-
-<p>These, although they make sense, I believe work fundamentally differently than a Go program should. One of the huge advantages of the language is that there are no exceptions &ndash; rather, there are errors that you must always make a conscious decision about what to do with them. If you ignore the error, so does your program. But errors won&rsquo;t bubble-up in the same way as most other modern languages, unless they cause something else to fail and return an error in the parent function.</p>
-
-<p>This changes if your code calls the <code>panic()</code> function.</p>
-
-<pre><code class="language-go">func A() {
-    println(&quot;A begins&quot;)
-    B()
-    println(&quot;A ends&quot;)
-}
-
-func B() {
-    println(&quot;B begins&quot;)
-    defer println(&quot;B defer called&quot;)
-    panic(&quot;AAAAHHHHHH!!!!&quot;)
-    println(&quot;B ends&quot;)
-}
-</code></pre>
-
-<p><a href="https://play.golang.org/p/zv89BmonhAQ">(try it here)</a></p>
-
-<p>As soon as you call <code>panic(&quot;message&quot;)</code> within function B, the current function stops immediately and runs its deferred stack, then panics the parent function (A) from that point. The above program will output:</p>
-
-<pre><code>A begins
-B begins
-B defer called
-panic: AAAAHHHHHH!!!!
-</code></pre>
-
-<p>This is fundamentally different than how errors are normally handled. Don&rsquo;t get me wrong, there are some perfectly valid reasons for a program to halt execution immediately, clean up after itself, and exit. I just think they&rsquo;re generally very rare, and most people should avoid panicking altogether.</p>
-
-<p>This wouldn&rsquo;t be a problem if there wasn&rsquo;t also a function called <code>recover()</code> which, when called from within a deferred function of a panicking stack, will stop the panic sequence and allow the program to resume normal behaviour. I feel like allowing recovery like this encourages bad practices. If something has gone so wrong that you made the (hopefully) highly informed decision to panic, there should probably not be a reason to recover. If there was, you should be passing the error in your return statement like normal.</p>
-
-<h1>Conclusion</h1>
-
-<p>There are many more built-in functions than you use everyday. Some are extremely useful, others are a bit more controversial. I think the most important thing is that you at least can understand all of the features of the language that you&rsquo;re using. Software engineering is as much an art as a science, and although you may not always use all of the tools at your disposal, it is important to have them tucked away in the back of your mind for the important situations that call for those tools.</p>
+<p>If you have any doubts, think something that you want to build. It doesn&rsquo;t matter how good you are, just try it out. See how it goes. Don&rsquo;t stress about following all of the best practices, just follow your gut. By the time you&rsquo;ve started making real progress on your project, you&rsquo;ll probably already have ideas about how to do things better. You&rsquo;ll already start to see how crappy your project is (for one reason or another), but that&rsquo;s the point. It has to be crappy. The realization that it&rsquo;s crappy is what will fuel you to keep getting better, and it&rsquo;s where the best ideas come from.</p>
 </div>
             <div class="conclusion" id="conclusion">
                 © Jacob Kania
