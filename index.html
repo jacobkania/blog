@@ -64,6 +64,7 @@
 
         .content {
             padding: 1rem;
+            line-height: 1.5rem;
         }
 
         .introduction {
@@ -119,15 +120,16 @@
                 <a href="{{.HomeURL}}">Jacob Kania</a>
             </div>
             <div class="links">
+                <span class="link"><a href="{{.HomeURL}}/about">About Me</a></span>
                 <span class="link"><a href="https://github.com/jacobkania">Github</a></span>
                 <span class="link"><a href="https://linkedin.com/in/jacobkania">LinkedIn</a></span>
-            </div>
         </div>
         <div class="content">
             <div class="introduction">
-                Hey! I'm Jacob. I write about things that I think are interesting,
-                which tends to vary quite a bit. This is currently a work in progress, but feel free to
-                browse through my past posts while you're here!
+                Hey! I'm Jacob Kania: a software engineer, living in beautiful San Diego, CA.
+                I write about things that I think are interesting, which tends to vary quite a bit.
+                If you find some of my writing resonates with you -- THANKS! I'm hoping to make writing here
+                a regular thing, and hope you'll be back! :)
              </div >
             <div class="most-recent-posts-list">
                 {{range .Entries}}
