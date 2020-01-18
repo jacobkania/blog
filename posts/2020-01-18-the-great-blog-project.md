@@ -2,7 +2,7 @@
 Title: The great Blog project
 PublishedDate: 2020-01-18
 ---
-I just had a (post)[https://jacobkania.com/2020-01-14-crappy-personal-projects] a few days ago about how I believe that creating crappy personal projects is a good thing. This is my full relevant story.
+I just had a [post](https://jacobkania.com/2020-01-14-crappy-personal-projects) a few days ago about how I believe that creating crappy personal projects is a good thing. This is my full relevant story.
 
 Writing the software to run a blog was a big challenge for me. Not because writing the software itself was challenging, but because I kept wasting time on creating the wrong thing. I had a whole list of requirements for the blog website. It had to:
 
