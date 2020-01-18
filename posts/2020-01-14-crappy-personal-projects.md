@@ -1,5 +1,5 @@
 ---
-Title: Crappy Personal Projects
+Title: Crappy personal projects
 PublishedDate: 2020-01-14
 ---
 I feel it's important to work on something for yourself. Something that you have lots of creative freedom in.
