@@ -4,7 +4,7 @@ PublishedDate: 2020-02-02
 ---
 It is rare to find a modern static website these days. The first things that come to mind when thinking of a static website would probably be: "clunky", "ugly", "geocities-era", "comic sans", etc.
 
-It's 2020 (Happy Palindrome day!), and JavaScript is great. There are lots of libraries out there which make it possible to build really powerful websites, and those websites can do amazing things. It's like people used to say about Java or Oracle: *"Nobody ever got fired for choosing to use React".*
+It's 2020 (Happy Palindrome Day!), and JavaScript is great. There are lots of libraries out there which make it possible to build really powerful websites, and those websites can do amazing things. It's like people used to say about Java or Oracle: *"Nobody ever got fired for choosing to use React".*
 
 I am a minimalist at heart. I like to make things simple for myself (within reason), and I see a lot of value in not over-engineering things.
 
