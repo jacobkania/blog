@@ -43,18 +43,18 @@ h6 {
 .page {
   max-width: 900px;
   margin: 0 auto;
-  background-color: #c6c5b9;
+  background-color: #f0f0f0;
   font-family: "fira", sans-serif;
   color: #303030;
 }
 
 .container {
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   min-height: 100vh;
 }
 
 .header {
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 .header > .name {
@@ -93,11 +93,11 @@ h6 {
 .links > .link > a {
   font-weight: 600;
   text-decoration: none;
-  color: #f5f5f5;
+  color: #ffffff;
 }
 
 .links > .link > a:visited {
-  color: #f5f5f5;
+  color: #ffffff;
 }
 
 @media (max-width: 900px) {
