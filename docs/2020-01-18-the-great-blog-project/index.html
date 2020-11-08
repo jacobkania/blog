@@ -15,8 +15,6 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        border-bottom: 0.25rem solid #dbc2cf;
-        padding-bottom: 1rem;
       }
 
       .title {
@@ -30,15 +28,6 @@
         font-size: 1rem;
         font-family: monospace;
         display: table; /* makes sure that date doesn't wrap */
-      }
-
-      .conclusion {
-        margin-top: 1rem;
-        text-align: center;
-        padding-top: 0.5rem;
-        border-top: 0.25rem solid #dbc2cf;
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
       }
 
       @media (max-width: 600px) {
@@ -81,7 +70,7 @@
         </div>
         <div class="links">
           <span class="link"
-            ><a href="https://jacobkania.com/about">About Me</a></span
+            ><a href="/about">About Me</a></span
           >
           <span class="link"
             ><a href="https://github.com/jacobkania">Github</a></span
@@ -96,6 +85,7 @@
           <div class="title">The great Blog project</div>
           <div class="date">2020-01-18</div>
         </div>
+        <hr class="divider">
         <div class="body"><p>I just had a <a href="https://jacobkania.com/2020-01-14-crappy-personal-projects">post</a> a few days ago about how I believe that creating crappy personal projects is a good thing. This is my full relevant story.</p>
 
 <p>Writing the software to run a blog was a big challenge for me. Not because writing the software itself was challenging, but because I kept wasting time on creating the wrong thing. I had a whole list of requirements for the blog website. It had to:</p>

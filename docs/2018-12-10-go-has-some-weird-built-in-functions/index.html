@@ -15,8 +15,6 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        border-bottom: 0.25rem solid #dbc2cf;
-        padding-bottom: 1rem;
       }
 
       .title {
@@ -30,15 +28,6 @@
         font-size: 1rem;
         font-family: monospace;
         display: table; /* makes sure that date doesn't wrap */
-      }
-
-      .conclusion {
-        margin-top: 1rem;
-        text-align: center;
-        padding-top: 0.5rem;
-        border-top: 0.25rem solid #dbc2cf;
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
       }
 
       @media (max-width: 600px) {
@@ -81,7 +70,7 @@
         </div>
         <div class="links">
           <span class="link"
-            ><a href="https://jacobkania.com/about">About Me</a></span
+            ><a href="/about">About Me</a></span
           >
           <span class="link"
             ><a href="https://github.com/jacobkania">Github</a></span
@@ -96,6 +85,7 @@
           <div class="title">Go has some weird built-in functions</div>
           <div class="date">2018-12-10</div>
         </div>
+        <hr class="divider">
         <div class="body"><p>Go is generally an exceptionally simple language, and that&rsquo;s reflected through it&rsquo;s very small number of keywords &ndash; one of the lowest of any modern language (<a href="https://github.com/leighmcculloch/keywords">source</a>). There are also some built-in functions that I&rsquo;m sure you use every day &ndash; <code>append()</code>, <code>make()</code>, and <code>copy()</code> are the main ones. You might even use <code>new()</code> to create a pointer. But did you know that there are actually over a dozen of these built-in functions, and some of them aren&rsquo;t even guaranteed to be permanent?</p>
 
 <h1>What are all of these built-in functions?</h1>
