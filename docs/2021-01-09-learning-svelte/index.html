@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Svelte | Jacob Kania</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://jacobkania.com/favicon.svg"
+    />
+
+    <link rel="stylesheet" href="/resources/common.css" />
+
+    <style>
+      .top-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .title {
+        font-size: 2.2rem;
+        line-height: normal;
+        font-weight: 600;
+        color: #202020;
+      }
+
+      .date {
+        font-size: 1rem;
+        font-family: monospace;
+        display: table; /* makes sure that date doesn't wrap */
+      }
+
+      @media (max-width: 600px) {
+        .top-container {
+          flex-wrap: wrap;
+        }
+
+        .title {
+          flex: 0 0 100%;
+        }
+
+        .date {
+          margin-top: 1rem;
+          flex: 0 0 100%;
+        }
+      }
+    </style>
+
+    <link rel="stylesheet" href="/resources/prism/prism.css" />
+
+    <!-- Google Analytics (I'm sorry, just hoping to know how many visitors I'm getting!) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-89372613-2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-89372613-2");
+    </script>
+  </head>
+  <body class="page">
+    <div class="container">
+      <div class="header">
+        <div class="name">
+          <a href="/">Jacob <span class="lastName">Kania</span></a>
+        </div>
+        <div class="links">
+          <span class="link"
+            ><a href="/about">About Me</a></span
+          >
+          <span class="link"
+            ><a href="https://github.com/jacobkania">Github</a></span
+          >
+          <span class="link"
+            ><a href="https://linkedin.com/in/jacobkania">LinkedIn</a></span
+          >
+        </div>
+      </div>
+      <div class="content match-braces">
+        <div class="top-container">
+          <div class="title">Learning Svelte</div>
+          <div class="date">2021-01-09</div>
+        </div>
+        <hr class="divider">
+        <div class="body"><p>I&rsquo;ve been working on a new project in my free time for a little while now, and figured it was time to start sharing. If you couldn&rsquo;t guess, this project uses <a href="https://svelte.dev">Svelte</a> - a newer frontend Javasript framework.</p>
+
+<p>I feel like I only write blog posts when I&rsquo;m really excited about learning something new for a project, but that&rsquo;s just how it goes, I guess&hellip;</p>
+
+<p>Svelte is really neat. I have been talking for a long time about how I wished I could just write <strong>reusable HTML components</strong> with a few little <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags woven in, and include those in other HTML pages. Like reusable React components, but simpler. That&rsquo;s exactly what it feels like to write svelte code.</p>
+
+<p>I love React in a lot of ways &ndash; it&rsquo;s proven itself to be a robust technology that can scale to massive projects. Though, there is a lot of overhead, as I wrote about <a href="https://jacobkania.com/2020-02-02-static-sites">here</a>. It&rsquo;s proven effective, but it&rsquo;s also important to look to the future at what&rsquo;s coming next.</p>
+
+<h1>Writing a svelte component</h1>
+
+<p>Have you ever written HTML? Congrats, you know the basics of svelte! I&rsquo;m half kidding, but seriously, this is an example of a valid svelte component file, in its entirety:</p>
+
+<pre><code class="language-html">&lt;!-- hello.svelte --&gt;
+
+&lt;script&gt;
+  const x = &quot;world!&quot;;
+&lt;/script&gt;
+
+&lt;h1&gt;My homepage&lt;/h1&gt;
+&lt;div&gt;Hello {x}&lt;/div&gt;
+</code></pre>
+
+<p>The beauty of it is that you can then just write another component and import your &ldquo;hello&rdquo; message:</p>
+
+<pre><code class="language-html">&lt;!-- homepage.svelte --&gt;
+
+&lt;script&gt;
+  import Hello from &quot;./hello.svelte&quot;;
+&lt;/script&gt;
+
+&lt;div&gt;
+  &lt;Hello /&gt;
+  &lt;span&gt; And goodbye! &lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>And just like that, you have composable HTML. Of course, though, there&rsquo;s way more that you can do. The other biggest highlight is automatic updating of changes in the DOM. No more wondering when a component will re-render on state changes, it just happens automatically.</p>
+
+<h1>Automatic state handling?</h1>
+
+<p>Svelte is able to do this because it works in a fundamentally different way to other frontend framworks. Svelte is a compiler instead of a runtime-framework like React. It <em>doesn&rsquo;t update a virtual DOM</em>, but instead pre-compiles our <code>.svelte</code> files into javascript. Svelte knows which parts of a component could change, and compiles functions to precisely change only what needs to be changed. The svelte blog has a great article that explains <a href="https://svelte.dev/blog/virtual-dom-is-pure-overhead">why the virtual DOM is unnecessary for high-performance</a>.</p>
+
+<p>This greatly reduces overhead while developing, and performance is automatically fast, without all of the computation and diffing that you get from a virtual dom.</p>
+
+<p>There are so many other topics that can be covered &ndash;</p>
+
+<ul>
+<li>Built-in support for global stores (no need for MobX or Redux)</li>
+<li>Excellent plugin support</li>
+<li>Unbelievably fast dev builds with <a href="https://www.snowpack.dev">Snowpack</a></li>
+<li>Seamless handling of async requests</li>
+<li>Easy handling of forms, with binding to input fields</li>
+<li>Built-in debugger tags as an alternative to <code>console.log</code></li>
+</ul>
+
+<p>I&rsquo;ll get to these as I keep learning-by-doing, and building this new mystery app! More details to come on that, too&hellip;</p>
+</div>
+        <div class="conclusion" id="conclusion">© Jacob Kania</div>
+      </div>
+    </div>
+    <script src="/resources/prism/prism.js"></script>
+  </body>
+</html>
