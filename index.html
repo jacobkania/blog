@@ -22,7 +22,8 @@
       }
 
       .post-list-item-row {
-        display: table-row;
+        display: block;
+        width: fit-content;
         text-decoration: none;
         color: #202020;
       }
@@ -34,8 +35,9 @@
       }
 
       .item-date {
-        font-family: monospace;
-        width: 6rem;
+        font-family: Courier, monospace;
+        font-size: 1rem;
+        width: 7rem;
       }
 
       @media (max-width: 900px) {
@@ -45,20 +47,6 @@
         }
       }
     </style>
-
-    <!-- Google Analytics (I'm sorry, just hoping to know how many visitors I'm getting!) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-89372613-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "UA-89372613-2");
-    </script>
   </head>
   <body class="page">
     <div class="container">
